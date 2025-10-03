@@ -1,13 +1,36 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frontend Project</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>Your Project</h1>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опросник настроения</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Опросник настроения</h1>
+            <div class="progress">
+                Вопрос <span id="current-question">1</span> из <span id="total-questions">5</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="question-card">
+                <h2 id="question-text">Здесь будет вопрос</h2>
+                
+                <div class="options" id="options-container">
+                    <!-- Варианты ответов появятся здесь -->
+                </div>
+
+                <div class="navigation">
+                    <button id="prev-btn" class="btn" disabled>Назад</button>
+                    <button id="next-btn" class="btn">Далее</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
