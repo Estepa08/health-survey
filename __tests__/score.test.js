@@ -1,4 +1,8 @@
-import { calculateScore, calculatePercentage, determineConditionLevel } from '../script.js';
+import {
+  calculateScore,
+  calculatePercentage,
+  determineConditionLevel,
+} from '../script.js';
 
 describe('calculateScore', () => {
   test('возвращает 0 для пустого массива', () => {

@@ -31,15 +31,14 @@ function determineConditionLevel(score, totalQuestions) {
   } else if (percentage < 50) {
     return { level: 'mild', message: 'Легкое снижение настроения' };
   } else if (percentage < 75) {
-    return { level: 'moderate', message: 'Выраженные признаки снижения настроения' };
+    return {
+      level: 'moderate',
+      message: 'Выраженные признаки снижения настроения',
+    };
   } else {
     return { level: 'severe', message: 'Сильно выраженные признаки' };
   }
 }
 
 // Экспортируем функции для тестов
-export {
-  calculateScore,
-  calculatePercentage,
-  determineConditionLevel
-};
+export { calculateScore, calculatePercentage, determineConditionLevel };

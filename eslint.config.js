@@ -16,12 +16,12 @@ export default [
         describe: 'readonly',
         it: 'readonly',
         beforeEach: 'readonly',
-        afterEach: 'readonly'
-      }
+        afterEach: 'readonly',
+      },
     },
     rules: {
       'no-unused-vars': 'warn',
-      'no-console': 'off'
-    }
-  }
+      'no-console': 'off',
+    },
+  },
 ];
