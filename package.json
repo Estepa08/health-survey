@@ -13,7 +13,9 @@
     "lint:js": "eslint *.js --fix || echo 'No JS files to lint'",
     "lint:html": "htmlhint *.html || echo 'No HTML files to lint'",
     "lint:css": "stylelint *.css --fix --allow-empty-input || echo 'No CSS files to lint'",
-    "test": "echo 'No tests yet'"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [
     "questionnaire",
@@ -23,10 +25,14 @@
   "author": "Ваше Имя",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "babel-jest": "^30.2.0",
     "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
     "htmlhint": "^1.7.1",
     "husky": "^9.1.7",
+    "jest": "^30.2.0",
     "prettier": "^3.6.2",
     "stylelint": "^16.25.0",
     "stylelint-config-standard": "^39.0.0"

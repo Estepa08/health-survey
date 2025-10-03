@@ -11,11 +11,17 @@ export default [
         console: 'readonly',
         document: 'readonly',
         window: 'readonly',
-      },
+        test: 'readonly',
+        expect: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly'
+      }
     },
     rules: {
       'no-unused-vars': 'warn',
-      'no-console': 'off',
-    },
-  },
+      'no-console': 'off'
+    }
+  }
 ];
