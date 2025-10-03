@@ -9,3 +9,4 @@ cd my-project
 rm -rf .git
 git init
 npm install
+```
