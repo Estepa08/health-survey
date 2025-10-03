@@ -11,6 +11,7 @@ export default [
         console: 'readonly',
         document: 'readonly',
         window: 'readonly',
+        fetch: 'readonly',
         test: 'readonly',
         expect: 'readonly',
         describe: 'readonly',

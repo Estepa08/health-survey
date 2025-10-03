@@ -1,5 +1,5 @@
 // Функция для отображения вопроса на странице
-export function displayQuestion(question) {
+export function displayQuestion(question, questionIndex, onAnswerSelect) {
   const questionText = document.getElementById('question-text');
   const optionsContainer = document.getElementById('options-container');
 
@@ -21,13 +21,17 @@ export function displayQuestion(question) {
     optionElement.textContent = optionText;
     optionElement.dataset.value = index;
 
-    // Добавляем обработчик клика
     optionElement.addEventListener('click', () => {
       document.querySelectorAll('.option').forEach((opt) => {
         opt.classList.remove('selected');
       });
       optionElement.classList.add('selected');
+
       console.log(`Выбран ответ: ${optionText} (балл: ${index})`);
+
+      if (onAnswerSelect) {
+        onAnswerSelect(questionIndex, index);
+      }
     });
 
     optionsContainer.appendChild(optionElement);

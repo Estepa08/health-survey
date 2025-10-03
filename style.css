@@ -85,3 +85,28 @@ h1 {
 .btn:hover:not(:disabled) {
   background-color: #2980b9;
 }
+
+.results-container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.results-card {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+}
+
+.results-card h2 {
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+.results-card .score {
+  font-size: 48px;
+  font-weight: bold;
+  color: #3498db;
+  margin-bottom: 30px;
+}
