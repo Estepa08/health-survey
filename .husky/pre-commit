@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "🚀 Running pre-commit checks..."
+echo "📝 Formatting code..."
+npm run format
+echo "🔍 Linting code..."
+npm run lint
+echo "✅ All checks passed!"
