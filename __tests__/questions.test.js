@@ -19,7 +19,7 @@ describe('loadQuestions', () => {
     const mockQuestions = [{ id: 1, question: 'Test', options: [] }];
     fetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => mockQuestions
+      json: async () => mockQuestions,
     });
 
     const questions = await loadQuestions();

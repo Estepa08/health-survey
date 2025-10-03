@@ -14,12 +14,14 @@ describe('displayQuestion', () => {
   test('отображает вопрос и варианты ответов', () => {
     const question = {
       question: 'Тестовый вопрос',
-      options: ['Вариант 1', 'Вариант 2']
+      options: ['Вариант 1', 'Вариант 2'],
     };
 
     displayQuestion(question);
 
-    expect(document.getElementById('question-text').textContent).toBe('Тестовый вопрос');
+    expect(document.getElementById('question-text').textContent).toBe(
+      'Тестовый вопрос'
+    );
     expect(document.querySelectorAll('.option').length).toBe(2);
   });
 });
@@ -27,7 +29,7 @@ describe('displayQuestion', () => {
 describe('updateQuestionCounter', () => {
   test('обновляет счетчик вопросов', () => {
     updateQuestionCounter(2, 10);
-    
+
     expect(document.getElementById('current-question').textContent).toBe('2');
     expect(document.getElementById('total-questions').textContent).toBe('10');
   });

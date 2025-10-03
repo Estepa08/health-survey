@@ -68,12 +68,12 @@ function displayQuestion(question) {
     // Добавляем обработчик клика
     optionElement.addEventListener('click', () => {
       // Убираем выделение у всех вариантов
-      document.querySelectorAll('.option').forEach(opt => {
+      document.querySelectorAll('.option').forEach((opt) => {
         opt.classList.remove('selected');
       });
       // Выделяем выбранный вариант
       optionElement.classList.add('selected');
-      
+
       console.log(`Выбран ответ: ${optionText} (балл: ${index})`);
     });
 
@@ -86,22 +86,22 @@ function displayQuestion(question) {
 // Основная функция инициализации опросника
 async function initQuestionnaire() {
   console.log('🚀 Инициализация опросника...');
-  
+
   const questions = await loadQuestions();
-  
+
   if (questions.length === 0) {
     console.error('Не удалось загрузить вопросы');
     return;
   }
 
   console.log(`✅ Загружено ${questions.length} вопросов`);
-  
+
   // Обновляем счетчик вопросов
   const totalQuestionsSpan = document.getElementById('total-questions');
   if (totalQuestionsSpan) {
     totalQuestionsSpan.textContent = questions.length;
   }
-  
+
   // Отображаем первый вопрос
   if (questions.length > 0) {
     displayQuestion(questions[0]);
