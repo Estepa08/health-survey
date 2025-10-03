@@ -7,11 +7,79 @@ let currentQuestionIndex = 0;
 let questions = [];
 let userAnswers = [];
 
-function showFinalResults() {
-  const totalScore = calculateScore(userAnswers);
+// Функция для загрузки конфига результатов
+async function loadResultsConfig() {
+  try {
+    const response = await fetch('./results-config.json');
+    if (!response.ok) throw new Error('Failed to load results config');
+    return await response.json();
+  } catch (error) {
+    console.error('Ошибка загрузки конфига результатов:', error);
+    return null;
+  }
+}
 
-  console.log('🎯 Финальный результат:', totalScore, 'баллов');
+// Функция для показа детализированных результатов
+function showDetailedResults(score, level) {
+  const recommendationsHTML = level.recommendations 
+    ? level.recommendations.map(rec => `<li>${rec}</li>`).join('')
+    : '';
 
+  const resultsContainer = document.createElement('div');
+  resultsContainer.className = 'results-container';
+  resultsContainer.innerHTML = `
+    <div class="results-card">
+      <div class="results-header">
+        <span class="emoji">${level.emoji}</span>
+        <h2>${level.title}</h2>
+      </div>
+      
+      <div class="score">${score} баллов</div>
+      
+      <div class="description">${level.description}</div>
+      
+      ${recommendationsHTML ? `
+        <div class="recommendations">
+          <h3>Рекомендации:</h3>
+          <ul>${recommendationsHTML}</ul>
+        </div>
+      ` : ''}
+      
+      ${level.warning ? `<div class="warning">${level.warning}</div>` : ''}
+      ${level.note ? `<div class="note">${level.note}</div>` : ''}
+      
+      ${level.emergency ? `
+        <div class="emergency">
+          <h3>Срочная помощь:</h3>
+          <p>${level.emergency.service}: <strong>${level.emergency.phone}</strong></p>
+          <p>${level.emergency.message}</p>
+        </div>
+      ` : ''}
+      
+      <button id="restart-btn" class="btn btn-primary">Пройти заново</button>
+    </div>
+  `;
+
+  addResultsToPage(resultsContainer);
+}
+
+// Функция для простых результатов (fallback)
+function showSimpleResults(score) {
+  const resultsContainer = document.createElement('div');
+  resultsContainer.className = 'results-container';
+  resultsContainer.innerHTML = `
+    <div class="results-card">
+      <h2>Опрос завершен!</h2>
+      <div class="score">${score} баллов</div>
+      <button id="restart-btn" class="btn btn-primary">Пройти заново</button>
+    </div>
+  `;
+
+  addResultsToPage(resultsContainer);
+}
+
+// Общая функция для добавления результатов на страницу
+function addResultsToPage(resultsContainer) {
   // Прячем вопросы
   const questionContainer = document.querySelector('.question-card');
   const navigation = document.querySelector('.navigation');
@@ -19,17 +87,7 @@ function showFinalResults() {
   if (questionContainer) questionContainer.style.display = 'none';
   if (navigation) navigation.style.display = 'none';
 
-  // Показываем результаты
-  const resultsContainer = document.createElement('div');
-  resultsContainer.className = 'results-container';
-  resultsContainer.innerHTML = `
-    <div class="results-card">
-      <h2>Опрос завершен!</h2>
-      <div class="score">${totalScore} баллов</div>
-      <button id="restart-btn" class="btn btn-primary">Пройти заново</button>
-    </div>
-  `;
-
+  // Добавляем результаты
   const main = document.querySelector('main');
   if (main) {
     main.appendChild(resultsContainer);
@@ -39,6 +97,31 @@ function showFinalResults() {
   const restartBtn = document.getElementById('restart-btn');
   if (restartBtn) {
     restartBtn.addEventListener('click', () => window.location.reload());
+  }
+}
+
+// Основная функция показа результатов
+async function showFinalResults() {
+  const totalScore = calculateScore(userAnswers);
+  const config = await loadResultsConfig();
+
+  console.log('🎯 Финальный результат:', totalScore, 'баллов');
+
+  // Если конфиг не загрузился - показываем простой результат
+  if (!config) {
+    showSimpleResults(totalScore);
+    return;
+  }
+
+  // Находим подходящий уровень
+  const level = config.levels.find(level => 
+    totalScore >= level.minScore && totalScore <= level.maxScore
+  );
+
+  if (level) {
+    showDetailedResults(totalScore, level);
+  } else {
+    showSimpleResults(totalScore);
   }
 }
 

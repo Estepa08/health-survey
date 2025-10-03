@@ -31,8 +31,20 @@ h1 {
 }
 
 .question-card h2 {
-  color: #2c3e50;
+  color: #416f9d;
   margin-bottom: 20px;
+}
+
+#question-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #4d89c5;
+  line-height: 1.4;
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .options {
@@ -40,11 +52,14 @@ h1 {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
 }
 
 .option {
   padding: 15px;
-  border: 2px solid #bdc3c7;
+  border: 2px solid #377ba9;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -110,3 +125,4 @@ h1 {
   color: #3498db;
   margin-bottom: 30px;
 }
+
