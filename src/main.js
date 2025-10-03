@@ -21,8 +21,8 @@ async function loadResultsConfig() {
 
 // Функция для показа детализированных результатов
 function showDetailedResults(score, level) {
-  const recommendationsHTML = level.recommendations 
-    ? level.recommendations.map(rec => `<li>${rec}</li>`).join('')
+  const recommendationsHTML = level.recommendations
+    ? level.recommendations.map((rec) => `<li>${rec}</li>`).join('')
     : '';
 
   const resultsContainer = document.createElement('div');
@@ -38,23 +38,31 @@ function showDetailedResults(score, level) {
       
       <div class="description">${level.description}</div>
       
-      ${recommendationsHTML ? `
+      ${
+        recommendationsHTML
+          ? `
         <div class="recommendations">
           <h3>Рекомендации:</h3>
           <ul>${recommendationsHTML}</ul>
         </div>
-      ` : ''}
+      `
+          : ''
+      }
       
       ${level.warning ? `<div class="warning">${level.warning}</div>` : ''}
       ${level.note ? `<div class="note">${level.note}</div>` : ''}
       
-      ${level.emergency ? `
+      ${
+        level.emergency
+          ? `
         <div class="emergency">
           <h3>Срочная помощь:</h3>
           <p>${level.emergency.service}: <strong>${level.emergency.phone}</strong></p>
           <p>${level.emergency.message}</p>
         </div>
-      ` : ''}
+      `
+          : ''
+      }
       
       <button id="restart-btn" class="btn btn-primary">Пройти заново</button>
     </div>
@@ -114,8 +122,8 @@ async function showFinalResults() {
   }
 
   // Находим подходящий уровень
-  const level = config.levels.find(level => 
-    totalScore >= level.minScore && totalScore <= level.maxScore
+  const level = config.levels.find(
+    (level) => totalScore >= level.minScore && totalScore <= level.maxScore
   );
 
   if (level) {
